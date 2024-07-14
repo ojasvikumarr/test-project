@@ -15,26 +15,48 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Project Title
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Brief description of the project.
+This is a test-project which contains a signup page , login pag and the dashboard 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+first the user fills his/her details on the signup page 
+after all the validations (like encrypting the password , checking valid phone no. , email and secure password)
+(s)he is directed to the login page 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+after validating the legitimacy of the user in database , jwt token is generated which gets stored in localstorage 
+(s)he is directed to the dashboard where all the details are displayed 
+and a logout button provided which shoots the user to the login page 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+SECURITY Utilities ;
+JsonWebToken ,
+Crypto-JS (for password encryption)
 
-## Learn More
+UI/UX utilites used : 
+Acertinity UI , 
+Shadcn Ui , 
+Tailwind CSS ,
+Framer Motion ,
+clsx
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Before running the application, ensure you have set up the following environment variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `NEXT_PUBLIC_HOST`=http://localhost:3000/
+- `JWT_SECRET`=secret123
+- `AES_SECRET`=secret1234
 
-## Deploy on Vercel
+-`POSTGRES_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+-`POSTGRES_PRISMA_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
+-`POSTGRES_URL_NO_SSL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb"
+-`POSTGRES_URL_NON_POOLING`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+-`POSTGRES_USER`="default"
+-`POSTGRES_HOST`="ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech"
+-`POSTGRES_PASSWORD`="si5PocqRKF9Q"
+-`POSTGRES_DATABASE`="verceldb"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployed on Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
