@@ -27,6 +27,10 @@ export default async function handler(req, res) {
             if (!/^\d{10}$/.test(phone)) {
                 return res.status(400).json({ error: 'Please enter a valid 10-digit phone number!' });
             }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                return res.status(400).json({ error: 'Please enter a valid email address!' });
+            }
             // Validate password (minimum length 8 characters, must contain at least one letter and one number)
             const passwordCriteria = /^(?=.*[@])(?=.*\d)[A-Za-z\d@]{6,}$/;
 

@@ -169,7 +169,7 @@ export default function SignupForm() {
                                 <div className="mt-7 flex items-baseline">
                                 <Select name="code" value={code} onValueChange={setcode}>
                                     <SelectTrigger className="w-[80px]">
-                                        <SelectValue placeholder="+91" />
+                                        <SelectValue placeholder="code" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="91">+91</SelectItem>
@@ -184,12 +184,15 @@ export default function SignupForm() {
                                 </LabelInputContainer>
                             </div>
                             <div className="flex items-center flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-3">
+                            <LabelInputContainer>
+                            <Label htmlFor="bday">Date of Birth</Label>
                             <DatePicker date={bday} setDate={setbday} />
+                            </LabelInputContainer>
                             </div>
                             <div className="flex items-center flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
                                 <LabelInputContainer className="mb-4">
                                     <Label htmlFor="image">Upload Id Card</Label>
-                                    <Input onChange={handleChange} value={image} name="image" id="image" placeholder="Browse" type="text" />
+                                    <Input value={image} name="image" id="image"  type="file" />
                                 </LabelInputContainer>
                                
                             </div>

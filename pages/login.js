@@ -69,7 +69,7 @@ export default function LoginForm() {
     
                 setTimeout(() => {
                     router.push('/dashboard');
-                }, 1000);
+                }, 3000);
             } else {
                 toast.error(`Problem in Logging the user: ${result.error}`, {
                     position: 'top-left',

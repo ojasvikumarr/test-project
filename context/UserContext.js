@@ -11,8 +11,8 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
+  const fetchUserDetails = async () => {
+    if (typeof window !== 'undefined') { // Check if window is defined (client-side)
       const token = localStorage.getItem('token');
 
       if (token) {
@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
 
           if (response.ok) {
             const data = await response.json();
-            setUser(data);
+            setUser(data.user); // Update user state with fetched user data
           } else {
             console.error('Error fetching user details:', response.error);
           }
@@ -35,11 +35,21 @@ export const UserProvider = ({ children }) => {
           console.error('Error fetching user details:', error);
         }
       }
-      setLoading(false);
-    };
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
 
     fetchUserDetails();
-  }, []);
+  }, []); // Empty dependency array to fetch once on mount
+
+  // Effect to update user on token change (client-side)
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetchUserDetails();
+    }
+  }, [typeof window !== 'undefined' ? localStorage.getItem('token') : null]);
 
   return (
     <UserContext.Provider value={{ user, loading }}>
