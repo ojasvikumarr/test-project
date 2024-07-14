@@ -18,32 +18,17 @@ import { motion } from "framer-motion";
 
 export default function LoginForm() {
     const router = useRouter()
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [department, setDepartment] = useState('');
     const words = [
         {
-          text: "If",
+          text: "Welcome",
         },
         {
-          text: "an",
-        },
-        {
-          text: "intern   ",
-        },
-        // {
-        //   text: "at DTU.",
-        //   className: "text-blue-500 dark:text-blue-500",
-        // },
+          text: "back",
+        }
       ];
 
-    useEffect(() => {
-        // if(localStorage.getItem('token')){
-        //   router.push("/")
-        // }
-    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,51 +38,70 @@ export default function LoginForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = {email, password };
-
+        const data = { email, password };
+    
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/loginintern`, {
-                method: "POST",
+            const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             });
-
+    
             const result = await res.json();
-            console.log("Success:", `Successfully signed up the user ${result.token}`);
-            localStorage.setItem('token' , result.token)
-            toast('Successfully Logged in!', {
-                position: "top-left",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: "light",
-                transition: Slide,
-            });
+    
+            if (res.ok) {
+                console.log("Success:", `Successfully logged in the user ${result.token}`);
+                localStorage.setItem('token', result.token);
+    
+                toast.success('Successfully Logged in!', {
+                    position: 'top-left',
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: 'light',
+                    transition: Slide,
+                });
+    
+                setTimeout(() => {
+                    router.push('/dashboard');
+                }, 1000);
+            } else {
+                toast.error(`Problem in Logging the user: ${result.error}`, {
+                    position: 'top-left',
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: 'light',
+                    transition: Slide,
+                });
+    
+                console.error("Error:", `Problem in Logging the user: ${result.error}`);
+            }
         } catch (error) {
-            toast.error(`Problem in Logging the user ${error}`, {
-                position: "top-left",
+            toast.error(`Problem in Logging the user: ${error.message}`, {
+                position: 'top-left',
                 autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
-                theme: "light",
+                theme: 'light',
                 transition: Slide,
             });
-
-            console.error("Error:", `Problem in Logging the user ${error}`);
+    
+            console.error("Error:", `Problem in Logging the user: ${error.message}`);
         }
-
-        setEmail('');
-        setPassword('');
-        setTimeout(() => {
-            router.push("/details")
-        }, 1000);
+    
+        // setEmail('');
+        // setPassword('');
     };
+    
     return (
         <>
         <AuroraBackground>
@@ -125,21 +129,11 @@ export default function LoginForm() {
         transition={Slide}
       />
       
-            <div className="max-w-md w-96  mx-auto rounded-none md:rounded-2xl p-4 md:p-8 mt-16 shadow-input bg-white dark:bg-black">
+            <div className="max-w-md w-96 min-w-[480px]  mx-auto rounded-none md:rounded-2xl p-4 md:p-8 mt-16 shadow-input bg-white dark:bg-black">
             <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
                 <TypewriterEffect words={words} />
             </h2>
             <form className="my-8" onSubmit={handleSubmit}>
-                <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-                    {/* <LabelInputContainer className={undefined}>
-                        <Label htmlFor="name">Name</Label>
-                        <Input onChange={handleChange} value={name} name="name" id="name" placeholder="Tyler" type="text" />
-                    </LabelInputContainer> */}
-                    {/* <LabelInputContainer className={undefined}>
-                        <Label htmlFor="phone">Phone</Label>
-                        <Input onChange={handleChange} value={phone} name="phone" id="phone" placeholder="xxxxxxxxxx" type="number" />
-                    </LabelInputContainer> */}
-                </div>
                 <LabelInputContainer className="mb-4">
                     <Label htmlFor="email">Email Address</Label>
                     <Input onChange={handleChange} value={email} name="email" id="email" placeholder="projectmayhem@fc.com" type="email" />
@@ -148,11 +142,6 @@ export default function LoginForm() {
                     <Label htmlFor="password">Password</Label>
                     <Input onChange={handleChange} value={password} name="password" id="password" placeholder="••••••••" type="password" />
                 </LabelInputContainer>
-                {/* <LabelInputContainer className="mb-8">
-                <Label htmlFor="department">Department</Label>
-                    <Input onChange={handleChange} value={department} name="department" id="department" placeholder="---------" type="department" />
-                
-                </LabelInputContainer> */}
 
                 <button
                     className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"

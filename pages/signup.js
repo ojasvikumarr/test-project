@@ -35,18 +35,18 @@ export default function SignupForm() {
     const [code , setcode] = useState('');
     const words = [
         {
-            text: "If",
-        },
-        {
-            text: "an",
-        },
-        {
-            text: "intern   ",
-        },
-        // {
-        //   text: "at DTU.",
-        //   className: "text-blue-500 dark:text-blue-500",
-        // },
+            text: "New",
+          },
+          {
+            text: "to",
+          },
+          {
+            text: "this",
+          },
+          {
+            text: "site?",
+            className: "text-blue-500 dark:text-blue-500",
+          },
     ];
     useEffect(() => {
         // if(localStorage.getItem('token')){
@@ -64,12 +64,10 @@ export default function SignupForm() {
         else if (name === 'code') setcode(value);
         else if (name === 'confirmpassword') setconfirmPassword(value);
     };
-    const handleYearChange = (value) => {
-        setSelectedYear(value);
-    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = { name, image, code , phone, email, company, password , confirmpassword};
+        const data = { name, code, bday, phone, email, company, password, confirmpassword };
         console.log('Submitting data:', data);
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
@@ -79,22 +77,28 @@ export default function SignupForm() {
                 },
                 body: JSON.stringify(data),
             });
-
+    
             const result = await res.json();
-            console.log("Success:", `Successfully signed up the user ${result}`);
-
-            toast('Successfully signed up!', {
-                position: "top-left",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: "light",
-                transition: Slide,
-            });
+            if (res.ok) {
+                console.log("Success:", `Successfully signed up the user ${result.success}`);
+                toast('Successfully signed up!', {
+                    position: "top-left",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "light",
+                    transition: Slide,
+                });
+                setTimeout(() => {
+                    router.push("/login");
+                }, 1500);
+            } else {
+                throw new Error(result.error);
+            }
         } catch (error) {
-            toast.error(`Problem in signing up the user ${error}`, {
+            toast.error(`Problem in signing up the user: ${error.message}`, {
                 position: "top-left",
                 autoClose: 1000,
                 hideProgressBar: false,
@@ -104,22 +108,21 @@ export default function SignupForm() {
                 theme: "light",
                 transition: Slide,
             });
-
-            console.error("Error:", `Problem in signing up the user ${error}`);
+    
+            console.error("Error:", `Problem in signing up the user: ${error.message}`);
         }
-
+    
         // setEmail('');
-        // setimage('');
+        // setImage('');
         // setPhone('');
         // setName('');
-        // setcompany('');
+        // setCompany('');
         // setPassword('');
-        // setconfirmPassword('');
-
-        // setTimeout(() => {
-        //     router.push("/login")
-        // }, 1000);
+        // setConfirmPassword('');
+    
+        
     };
+    
     
     return (
         <>

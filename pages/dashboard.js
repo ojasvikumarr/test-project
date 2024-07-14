@@ -1,16 +1,19 @@
 import {React , useState , useEffect} from 'react';
 import { useUser } from "../context/UserContext";
-import { ToastContainer, toast , Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-const InternProfile = () => {
+import { useRouter } from 'next/router';
+
+const Profile = () => {
+    const router = useRouter();
     const { user, loading } = useUser();
     // console.log(user.user);
     if(loading){
         return <div>loading...</div>
     }
+    console.log(user);
     const formatDate = (dateString) => {
         try {
           const date = new Date(dateString);
@@ -19,6 +22,12 @@ const InternProfile = () => {
           return 'Invalid Date';
         }
       };
+    const logout = () => {
+        localStorage.removeItem('token');
+        setTimeout(() => {
+            router.push("/login")
+        }, 1000);
+    }
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -45,6 +54,9 @@ const InternProfile = () => {
             <h2 className="text-2xl font-bold text-gray-800">{user.user.name}</h2>
             <p className="text-gray-600">{user.user.email}</p>
           </div>
+          <button onClick={logout} className='font-bold text-xl bg-violet-200 hover:bg-violet-950 hover:text-white transition rounded p-1 px-2'>
+            LogOut
+          </button>
         </div>
         <motion.div
           initial={{ scale: 0.9 }}
@@ -55,57 +67,20 @@ const InternProfile = () => {
           <h3 className="text-xl font-semibold text-gray-800">Profile Details</h3>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <p className="text-gray-600">Roll Number:</p>
-              <p className="font-medium text-gray-800">{user.user.roll}</p>
+              <p className="text-gray-600">Company</p>
+              <p className="font-medium text-gray-800">{user.user.company}</p>
             </div>
             <div>
-              <p className="text-gray-600">Year:</p>
-              <p className="font-medium text-gray-800">{user.user.year}</p>
+              <p className="text-gray-600">Birthday :</p>
+              <p className="font-medium text-gray-800">{formatDate(user.user.bday)}</p>
             </div>
             <div>
               <p className="text-gray-600">Phone:</p>
-              <p className="font-medium text-gray-800">{user.user.phone}</p>
+              <p className="font-medium text-gray-800">+{user.user.code} {user.user.phone}</p>
             </div>
-            <div>
-              <p className="text-gray-600">Department:</p>
-              <p className="font-medium text-gray-800">{user.user.department}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">CGPA:</p>
-              <p className="font-medium text-gray-800">{user.user.cgpa}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Back:</p>
-              <p className="font-medium text-gray-800">{user.user.back}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Account Number:</p>
-              <p className="font-medium text-gray-800">{user.user.acc}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">IFSC Code:</p>
-              <p className="font-medium text-gray-800">{user.user.code}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Reporting Officer:</p>
-              <p className="font-medium text-gray-800">{user.user.reportingofficer || 'N/A'}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Departure Date:</p>
-              <p className="font-medium text-gray-800">{new Date(user.user.depdate).toLocaleDateString()}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Departure Number:</p>
-              <p className="font-medium text-gray-800">{user.user.depno}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Period:</p>
-              <p className="font-medium text-gray-800">{user.user.period}</p>
-            </div>
-            <div>
-              <p className="text-gray-600">Stay:</p>
-              <p className="font-medium text-gray-800">{user.user.stay}</p>
-            </div>
+            
+            
+            
           </div>
         </motion.div>
       </motion.div>
@@ -113,16 +88,5 @@ const InternProfile = () => {
   );
 };
 
-export default InternProfile;
+export default Profile;
 
-const ProfileItem = ({ icon, label, value }) => (
-    <div className="flex items-center">
-      <div className="p-2 bg-indigo-500 text-white rounded-full mr-4">
-        {icon}
-      </div>
-      <div>
-        <h2 className="text-gray-700 font-bold">{label}</h2>
-        <p className="text-gray-600">{value}</p>
-      </div>
-    </div>
-  );

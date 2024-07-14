@@ -1,9 +1,13 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-
+import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
-
+import { useEffect } from "react";
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/signup');  // Redirects to the sign-up page
+  }, []);
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
