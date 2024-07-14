@@ -20,6 +20,7 @@ export default function LoginForm() {
     const router = useRouter()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setloading] = useState(false)
     const words = [
         {
           text: "Welcome",
@@ -39,7 +40,7 @@ export default function LoginForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = { email, password };
-    
+        setloading(true);
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
                 method: 'POST',
@@ -97,7 +98,7 @@ export default function LoginForm() {
     
             console.error("Error:", `Problem in Logging the user: ${error.message}`);
         }
-    
+        setloading(false);
         // setEmail('');
         // setPassword('');
     };
@@ -142,7 +143,11 @@ export default function LoginForm() {
                     <Label htmlFor="password">Password</Label>
                     <Input onChange={handleChange} value={password} name="password" id="password" placeholder="••••••••" type="password" />
                 </LabelInputContainer>
-
+                {loading ? (
+                <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                </div>
+            ) : (
                 <button
                     className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
                     type="submit"
@@ -150,7 +155,7 @@ export default function LoginForm() {
                     Login &rarr;
                     <BottomGradient />
                 </button>
-
+                    )}
                 <div className="bg-gradient-to-r  from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
                 <Link href={'/signup'}><button
                     className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"

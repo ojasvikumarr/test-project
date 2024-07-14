@@ -10,8 +10,11 @@ const Profile = () => {
     const router = useRouter();
     const { user, loading } = useUser();
     // console.log(user.user);
-    if(loading){
-        return <div>loading...</div>
+    if(!user){
+        setTimeout(() => {
+            router.push('/dashboard');
+        }, 2000);
+        return <div>loading... please refresh after sometime</div>
     }
     console.log(user);
     const formatDate = (dateString) => {
