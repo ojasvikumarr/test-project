@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 # Project Title
 
 Brief description of the project.
-This is a test-project which contains a signup page , login pag and the dashboard 
+This is a test-project which contains a signup page , login page and the dashboard 
 
 first the user fills his/her details on the signup page 
 after all the validations (like encrypting the password , checking valid phone no. , email and secure password)
@@ -55,6 +55,9 @@ Before running the application, ensure you have set up the following environment
 - `POSTGRES_HOST`="ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech"
 - `POSTGRES_PASSWORD`="si5PocqRKF9Q"
 - `POSTGRES_DATABASE`="verceldb"
+
+## Database used 
+vercel postgreSQL is used as the MySql database 
 
 ## Deployed on Vercel
 
