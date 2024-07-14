@@ -28,16 +28,16 @@ after validating the legitimacy of the user in database , jwt token is generated
 (s)he is directed to the dashboard where all the details are displayed 
 and a logout button provided which shoots the user to the login page 
 
-SECURITY Utilities ;
-JsonWebToken ,
-Crypto-JS (for password encryption)
+`SECURITY` Utilities used :
+- JsonWebToken 
+- Crypto-JS (for password encryption)
 
-UI/UX utilites used : 
-Acertinity UI , 
-Shadcn Ui , 
-Tailwind CSS ,
-Framer Motion ,
-clsx
+`UI/UX` utilites used : 
+- Acertinity UI 
+- Shadcn Ui 
+- Tailwind CSS 
+- Framer Motion 
+- clsx
 
 ## Configuration
 
@@ -48,13 +48,13 @@ Before running the application, ensure you have set up the following environment
 - `AES_SECRET`=secret1234
 
 - `POSTGRES_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
--`POSTGRES_PRISMA_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
--`POSTGRES_URL_NO_SSL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb"
--`POSTGRES_URL_NON_POOLING`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
--`POSTGRES_USER`="default"
--`POSTGRES_HOST`="ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech"
--`POSTGRES_PASSWORD`="si5PocqRKF9Q"
--`POSTGRES_DATABASE`="verceldb"
+- `POSTGRES_PRISMA_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
+- `POSTGRES_URL_NO_SSL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb"
+- `POSTGRES_URL_NON_POOLING`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+- `POSTGRES_USER`="default"
+- `POSTGRES_HOST`="ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech"
+- `POSTGRES_PASSWORD`="si5PocqRKF9Q"
+- `POSTGRES_DATABASE`="verceldb"
 
 ## Deployed on Vercel
 
