@@ -47,7 +47,7 @@ Before running the application, ensure you have set up the following environment
 - `JWT_SECRET`=secret123
 - `AES_SECRET`=secret1234
 
--`POSTGRES_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+- `POSTGRES_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 -`POSTGRES_PRISMA_URL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
 -`POSTGRES_URL_NO_SSL`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5-pooler.us-east-1.aws.neon.tech:5432/verceldb"
 -`POSTGRES_URL_NON_POOLING`="postgres://default:si5PocqRKF9Q@ep-proud-mountain-a48wobp5.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
