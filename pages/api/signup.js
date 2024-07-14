@@ -1,5 +1,6 @@
 import { sql } from '@vercel/postgres';
 import CryptoJS from 'crypto-js';
+const cors = require('micro-cors')();
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
