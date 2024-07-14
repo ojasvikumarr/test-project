@@ -65,6 +65,3 @@ Disclaimer :
 the site isn't changing pages due to some unknown error with CORS ,
 
 https://test-project-i3gublc88-ojasvi-kumars-projects.vercel.app/signup
-- `signup` : https://test-project-imc66qq7q-ojasvi-kumars-projects.vercel.app/signup
-- `login` : https://test-project-imc66qq7q-ojasvi-kumars-projects.vercel.app/login
-- `dashboard` : https://test-project-imc66qq7q-ojasvi-kumars-projects.vercel.app/dashboard
