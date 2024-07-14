@@ -1,0 +1,21 @@
+to create the table 
+CREATE TABLE IF NOT EXISTS Users (
+                    Name VARCHAR(255),
+                    code INT,
+                    bday DATE,
+                    phone VARCHAR(10),
+                    email VARCHAR(255),
+                    company VARCHAR(255),
+                    password VARCHAR(255)
+                );
+
+
+to add new users 
+INSERT INTO Users (Name, code, bday, phone, email, company, password)
+VALUES (${name}, ${code}, ${formattedDate}, ${phone}, ${email}, ${company}, ${encryptedPassword});
+
+to search for the user based on email from the database 
+SELECT * FROM Users WHERE email = ${email}
+
+used in getUserDetails to provide the data of the logged in user to all the components of the website 
+SELECT * FROM Users WHERE email = ${email}
